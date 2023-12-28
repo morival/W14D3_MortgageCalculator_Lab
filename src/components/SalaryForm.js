@@ -1,3 +1,4 @@
+import { FormControl, FormControlLabel, Switch } from "@mui/material";
 import React, { useState } from "react";
 
 export default function SalaryForm({ onSalarySubmit }) {
@@ -8,7 +9,7 @@ export default function SalaryForm({ onSalarySubmit }) {
     const [modifier, setModifier] = useState(4.5);
     const [deposit, setDeposit] = useState(0);
 
-    const onOptionChange = e => setJointMortgage(e.target.value === "yes")
+    const onOptionChange = e => setJointMortgage(e.target.checked)
 
     const handleMainSalaryChange = e => setMainSalary(e.target.value);
 
@@ -34,23 +35,13 @@ export default function SalaryForm({ onSalarySubmit }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>joint mortgage?</label>
-            <label>
-                <input
-                    type='radio'
-                    value='no'
-                    checked={jointMortgage === false}
-                    onChange={onOptionChange} />
-                no
-            </label>
-            <label>
-                <input
-                    type='radio'
-                    value='yes'
-                    checked={jointMortgage === true}
-                    onChange={onOptionChange} />
-                yes
-            </label>
+            <FormControl>
+                <FormControlLabel
+                    label='joint mortgage'
+                    control={
+                        <Switch checked={jointMortgage} onChange={onOptionChange} />
+                    } />
+            </FormControl>
 
             <div>
                 <label>Main Salary

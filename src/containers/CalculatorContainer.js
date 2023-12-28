@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SalaryForm from '../components/SalaryForm';
 import LoanResult from '../components/LoanResult';
 import MortgageForm from '../components/MortgageForm';
+import { Container } from '@mui/material';
 
 const CalculatorContainer = () => {
 
@@ -25,17 +26,17 @@ const CalculatorContainer = () => {
 
         <>
             <h1>Mortgage Calculator</h1>
-            <div style={{ maxWidth: '600px' }}>
+            <Container maxWidth='sm'>
                 <h3>Calculate the total amount you can afford</h3>
                 <SalaryForm onSalarySubmit={calculateLoan} />
                 <LoanResult mortgage={affordableAmount} />
-            </div>
+            </Container>
             <br />
-            <div style={{ maxWidth: '600px' }}>
+            <Container maxWidth='sm'>
                 <h3>Calculate your monthly mortgage repayment amount</h3>
                 <MortgageForm />
 
-            </div>
+            </Container>
         </>
     )
 }
