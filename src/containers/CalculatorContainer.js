@@ -10,10 +10,11 @@ const CalculatorContainer = () => {
     const calculateLoan = (salary) => {
         const sal1 = parseInt(salary.mainSalary);
         const sal2 = parseInt(salary.secondSalary);
+        const modifier = salary.modifier;
         const deposit = parseInt(salary.deposit);
         
-        const updated = sal1 + sal2;
-        const maxMortgage = updated * 3;
+        const salSum = sal1 + sal2;
+        const maxMortgage = salSum * modifier;
         const mortgageWithDeposit = maxMortgage + deposit;
         setMortgage(mortgageWithDeposit);
     }
