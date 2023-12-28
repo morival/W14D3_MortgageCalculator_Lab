@@ -5,7 +5,7 @@ const LoanResult = ({mortgage}) => {
 
     return(
         <>
-            <h3>You can afford up to: {mortgage}</h3>
+            <h4>You can afford up to: {mortgage}</h4>
         </>
     )
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-
-const SalaryForm = ({ onSalarySubmit }) => {
+export default function SalaryForm({ onSalarySubmit }) {
 
     const [jointMortgage, setJointMortgage] = useState(false)
     const [mainSalary, setMainSalary] = useState(0);
@@ -38,16 +37,16 @@ const SalaryForm = ({ onSalarySubmit }) => {
             <label>joint mortgage?</label>
             <label>
                 <input
-                    type="radio"
-                    value="no"
+                    type='radio'
+                    value='no'
                     checked={jointMortgage === false}
                     onChange={onOptionChange} />
                 no
             </label>
             <label>
                 <input
-                    type="radio"
-                    value="yes"
+                    type='radio'
+                    value='yes'
                     checked={jointMortgage === true}
                     onChange={onOptionChange} />
                 yes
@@ -56,16 +55,16 @@ const SalaryForm = ({ onSalarySubmit }) => {
             <div>
                 <label>Main Salary
                     <input
-                        type="number"
-                        min="0"
+                        type='number'
+                        min='0'
                         value={mainSalary}
                         onChange={handleMainSalaryChange} />
                 </label>
 
                 {jointMortgage ? <label>Second Salary
                     <input
-                        type="number"
-                        min="0"
+                        type='number'
+                        min='0'
                         value={secondSalary}
                         onChange={handleSecondSalaryChange} />
                 </label> : null}
@@ -74,8 +73,8 @@ const SalaryForm = ({ onSalarySubmit }) => {
             <div>
                 <label>Modifier</label>
                 <select
-                    name="modifier"
-                    id="modifier"
+                    name='modifier'
+                    id='modifier'
                     value={modifier}
                     onChange={e => setModifier(e.target.value)}
                 >
@@ -88,18 +87,16 @@ const SalaryForm = ({ onSalarySubmit }) => {
 
                 <label>Deposit</label>
                 <input
-                    type="number"
-                    min="0"
+                    type='number'
+                    min='0'
                     value={deposit}
                     onChange={handleDeposit} />
 
                 <input
-                    type="submit"
-                    value="Calculate Loan" />
+                    type='submit'
+                    value='Calculate Loan' />
             </div>
 
         </form>
     )
 }
-
-export default SalaryForm;
