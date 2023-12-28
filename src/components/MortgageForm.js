@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 export default function MortgageForm(params) {
 
     const [mortgageDebt, setMortgageDebt] = useState("");
-    const [interestRate, setInterestRate] = useState();
-    const [mortgageTerm, setMortgageTerm] = useState();
+    const [interestRate, setInterestRate] = useState("");
+    const [mortgageTerm, setMortgageTerm] = useState("");
 
     const handleMortgageDeptChange = e => setMortgageDebt(e.target.value);
 
@@ -35,7 +35,7 @@ export default function MortgageForm(params) {
                 <p>What interest rate can you get?</p>
             </div>
             <div>
-
+                
             </div>
         </form>
     )
