@@ -11,9 +11,9 @@ const CalculatorContainer = () => {
 
     const calculateLoan = (salary) => {
         const sal1 = parseInt(salary.mainSalary);
-        const sal2 = parseInt(salary.secondSalary);
+        const sal2 = parseInt(salary.secondSalary ? salary.secondSalary : 0);
         const modifier = salary.modifier;
-        const deposit = parseInt(salary.deposit);
+        const deposit = parseInt(salary.deposit ? salary.deposit : 0);
 
         const salSum = sal1 + sal2;
         const maxMortgage = salSum * modifier;
