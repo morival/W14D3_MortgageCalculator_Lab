@@ -1,4 +1,4 @@
-import { Button, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, TextField } from "@mui/material";
+import { Button, Divider, FormControl, FormControlLabel, InputAdornment, InputLabel, MenuItem, Select, Switch, TextField } from "@mui/material";
 import React, { useState } from "react";
 
 export default function SalaryForm({ onSalarySubmit }) {
@@ -6,14 +6,16 @@ export default function SalaryForm({ onSalarySubmit }) {
     const [jointMortgage, setJointMortgage] = useState(false)
     const [mainSalary, setMainSalary] = useState("");
     const [secondSalary, setSecondSalary] = useState("");
-    const [modifier, setModifier] = useState(4.5);
+    const [salaryMultiplier, setSalaryMultiplier] = useState(4.5);
     const [deposit, setDeposit] = useState("");
 
-    const onOptionChange = e => setJointMortgage(e.target.checked)
+    const handleSwitchJointMortgage = e => setJointMortgage(e.target.checked)
 
     const handleMainSalaryChange = e => setMainSalary(e.target.value);
 
     const handleSecondSalaryChange = e => setSecondSalary(e.target.value);
+
+    const handleSelectSalaryMultiplier = e => setSalaryMultiplier(e.target.value);
 
     const handleDeposit = e => setDeposit(e.target.value);
 
@@ -21,13 +23,13 @@ export default function SalaryForm({ onSalarySubmit }) {
         e.preventDefault();
         const mainSalaryToSubmit = mainSalary;
         const secondSalaryToSubmit = secondSalary;
-        const modifierToSubmit = modifier;
+        const salaryMultiplierToSubmit = salaryMultiplier;
         const depositToSubmit = deposit;
 
         onSalarySubmit({
             mainSalary: mainSalaryToSubmit,
             secondSalary: secondSalaryToSubmit,
-            modifier: modifierToSubmit,
+            salaryMultiplier: salaryMultiplierToSubmit,
             deposit: depositToSubmit
         })
     }
@@ -35,13 +37,20 @@ export default function SalaryForm({ onSalarySubmit }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <FormControl>
-                <FormControlLabel
-                    label='joint mortgage'
-                    control={
-                        <Switch checked={jointMortgage} onChange={onOptionChange} />
-                    } />
-            </FormControl>
+
+            <div>
+                <FormControl>
+                    <FormControlLabel
+                        label='joint mortgage'
+                        control={
+                            <Switch checked={jointMortgage} onChange={handleSwitchJointMortgage} />
+                        } />
+                </FormControl>
+            </div>
+
+            <br />
+            <Divider />
+            <br />
 
             <div>
                 <TextField
@@ -50,7 +59,12 @@ export default function SalaryForm({ onSalarySubmit }) {
                     type='number'
                     value={mainSalary}
                     onChange={handleMainSalaryChange}
-                    InputProps={{ inputProps: { min: 0 } }} />
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">£</InputAdornment>
+                        ),
+                        inputProps: { min: 0, required: true }
+                    }} />
 
                 {jointMortgage ? <TextField
                     id='secondSalary'
@@ -58,30 +72,43 @@ export default function SalaryForm({ onSalarySubmit }) {
                     type='number'
                     value={secondSalary}
                     onChange={handleSecondSalaryChange}
-                    InputProps={{ inputProps: { min: 0 } }} /> : null}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">£</InputAdornment>
+                        ),
+                        inputProps: { min: 0 }
+                    }} /> : null}
             </div>
+
             <br />
+            <Divider />
+            <br />
+
             <div>
-                <InputLabel id="modifier">modifier</InputLabel>
+                <InputLabel id="multiplier">Multiplier</InputLabel>
                 <Select
-                    labelId="modifier"
-                    value={modifier}
-                    onChange={e => setModifier(e.target.value)}
+                    labelId="multiplier"
+                    value={salaryMultiplier}
+                    onChange={handleSelectSalaryMultiplier}
                 >
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={4.1}>4.1</MenuItem>
-                    <MenuItem value={4.2}>4.2</MenuItem>
-                    <MenuItem value={4.3}>4.3</MenuItem>
-                    <MenuItem value={4.4}>4.4</MenuItem>
-                    <MenuItem value={4.5}>4.5</MenuItem>
-                    <MenuItem value={4.6}>4.6</MenuItem>
-                    <MenuItem value={4.7}>4.7</MenuItem>
-                    <MenuItem value={4.8}>4.8</MenuItem>
-                    <MenuItem value={4.9}>4.9</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={4}>x4</MenuItem>
+                    <MenuItem value={4.1}>x4.1</MenuItem>
+                    <MenuItem value={4.2}>x4.2</MenuItem>
+                    <MenuItem value={4.3}>x4.3</MenuItem>
+                    <MenuItem value={4.4}>x4.4</MenuItem>
+                    <MenuItem value={4.5}>x4.5</MenuItem>
+                    <MenuItem value={4.6}>x4.6</MenuItem>
+                    <MenuItem value={4.7}>x4.7</MenuItem>
+                    <MenuItem value={4.8}>x4.8</MenuItem>
+                    <MenuItem value={4.9}>x4.9</MenuItem>
+                    <MenuItem value={5}>x5</MenuItem>
                 </Select>
             </div>
+
             <br />
+            <Divider />
+            <br />
+
             <div>
                 <TextField
                     id='deposit'
@@ -89,13 +116,19 @@ export default function SalaryForm({ onSalarySubmit }) {
                     type='number'
                     value={deposit}
                     onChange={handleDeposit}
-                    InputProps={{ inputProps: { min: 0 } }} />
-            </div>
-            <br />
-            <div>
-                <Button variant="contained" type='submit'>Calculate</Button>
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">£</InputAdornment>
+                        ),
+                        inputProps: { min: 0 }
+                    }} />
             </div>
 
+            <br />
+            <Divider />
+            <br />
+
+            <Button variant="contained" type='submit'>Calculate</Button>
         </form>
     )
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LoanResult = ({mortgage}) => {
+const LoanResult = ({houseValue}) => {
 
 
     return(
         <>
-            <h4>You can afford up to: {mortgage}</h4>
+            <h4>You can afford up to: {houseValue}</h4>
         </>
     )
 }
