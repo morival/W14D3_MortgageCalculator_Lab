@@ -26,7 +26,13 @@ const CalculatorContainer = () => {
         const rate = mortgage.interestRate;
         const term = mortgage.mortgageTerm;
 
-        
+        const numberOfPayments = term * 12;
+        const monthlyRate = rate / 100 / 12;
+        const power = Math.pow(1 + monthlyRate, numberOfPayments);
+        const payment = debt * (monthlyRate * power / (power - 1));
+        const totalRepayment = payment * numberOfPayments;
+        console.log(payment.toFixed(2))
+        console.log(totalRepayment.toFixed(2))
     }
 
 
