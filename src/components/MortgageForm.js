@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 
 export default function MortgageForm({ onMortgageSubmit }) {
 
-    const [mortgageDebt, setMortgageDebt] = useState("");
-    const [interestRate, setInterestRate] = useState("");
-    const [mortgageTerm, setMortgageTerm] = useState("");
+    const [mortgageDebt, setMortgageDebt] = useState("170000");
+    const [interestRate, setInterestRate] = useState("5.5");
+    const [mortgageTerm, setMortgageTerm] = useState("35");
 
     const handleMortgageDeptChange = e => setMortgageDebt(e.target.value);
     const handleInterestRateChange = e => setInterestRate(e.target.value);
@@ -38,7 +38,7 @@ export default function MortgageForm({ onMortgageSubmit }) {
                     onChange={handleMortgageDeptChange}
                     InputProps={{
                         startAdornment: (
-                            <InputAdornment position="start">£</InputAdornment>
+                            <InputAdornment position='start'>£</InputAdornment>
                         ),
                         inputProps: { min: 0, required: true }
                     }} />

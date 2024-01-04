@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SalaryForm from '../components/SalaryForm';
 import LoanResult from '../components/LoanResult';
 import MortgageForm from '../components/MortgageForm';
-import { Container, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardHeader, Container, Typography } from '@mui/material';
 
 const CalculatorContainer = () => {
 
@@ -30,8 +30,9 @@ const CalculatorContainer = () => {
         const monthlyRate = rate / 100 / 12;
         const power = Math.pow(1 + monthlyRate, numberOfPayments);
         const payment = debt * (monthlyRate * power / (power - 1));
+        const paymentRoundedUp = payment.toFixed(2)
         const totalRepayment = payment * numberOfPayments;
-        console.log(payment.toFixed(2))
+        console.log(paymentRoundedUp)
         console.log(totalRepayment.toFixed(2))
     }
 
@@ -41,15 +42,27 @@ const CalculatorContainer = () => {
         <>
             <Typography variant='h2' gutterBottom>Mortgage Calculator</Typography>
             <Container maxWidth='sm'>
-                <Typography variant='h5' gutterBottom>Calculate the total amount you can afford</Typography>
-                <SalaryForm onSalarySubmit={calculateLoan} />
-                <LoanResult houseValue={affordableAmount} />
+                <Card variant='outlined'>
+                    <CardHeader title='Calculate the total amount you can afford' />
+                    <CardActions>
+                        <SalaryForm onSalarySubmit={calculateLoan} />
+                    </CardActions>
+                    <CardContent>
+                        <LoanResult houseValue={affordableAmount} />
+                    </CardContent>
+                </Card>
             </Container>
             <br />
             <Container maxWidth='sm'>
-                <Typography variant='h5' gutterBottom>Calculate your monthly mortgage repayment amount</Typography>
-                <MortgageForm onMortgageSubmit={calculateMortgage}/>
-
+                <Card variant='outlined'>
+                    <CardHeader title='Calculate your monthly mortgage repayment amount' />
+                    <CardActions>
+                        <MortgageForm onMortgageSubmit={calculateMortgage} />
+                    </CardActions>
+                    <CardContent>
+                        
+                    </CardContent>
+                </Card>
             </Container>
         </>
     )
