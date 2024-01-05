@@ -1,32 +1,38 @@
+import React from 'react';
 import { Button, Divider, InputAdornment, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
 
 
-export default function MortgageForm({ onMortgageSubmit }) {
+export default function MortgageForm(props) {
+    // export default function MortgageForm({ onMortgageSubmit }) {
 
-    const [mortgageDebt, setMortgageDebt] = useState("170000");
-    const [interestRate, setInterestRate] = useState("5.5");
-    const [mortgageTerm, setMortgageTerm] = useState("35");
+    // const [mortgageDebt, setMortgageDebt] = useState("170000");
+    // const [interestRate, setInterestRate] = useState("5.5");
+    // const [mortgageTerm, setMortgageTerm] = useState("35");
 
-    const handleMortgageDeptChange = e => setMortgageDebt(e.target.value);
-    const handleInterestRateChange = e => setInterestRate(e.target.value);
-    const handleMortgageTermChange = e => setMortgageTerm(e.target.value);
+    // const handleMortgageDeptChange = e => setMortgageDebt(e.target.value);
+    // const handleInterestRateChange = e => setInterestRate(e.target.value);
+    // const handleMortgageTermChange = e => setMortgageTerm(e.target.value);
 
+    // const handleSubmit = e => {
+    //     e.preventDefault();
+    //     const debt = mortgageDebt;
+    //     const rate = interestRate;
+    //     const term = mortgageTerm;
+
+    //     onMortgageSubmit({
+    //         mortgageDebt: debt,
+    //         interestRate: rate,
+    //         mortgageTerm: term
+    //     })
+    // }
     const handleSubmit = e => {
         e.preventDefault();
-        const debt = mortgageDebt;
-        const rate = interestRate;
-        const term = mortgageTerm;
-
-        onMortgageSubmit({
-            mortgageDebt: debt,
-            interestRate: rate,
-            mortgageTerm: term
-        })
+        props.onMortgageSubmit();
     }
 
     return (
         <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}> */}
 
             <div>
                 <Typography variant='subtitle1' gutterBottom>How much do you want to borrow?</Typography>
@@ -34,8 +40,9 @@ export default function MortgageForm({ onMortgageSubmit }) {
                     id='mortgageDebt'
                     label='Mortgage debt'
                     type='number'
-                    value={mortgageDebt}
-                    onChange={handleMortgageDeptChange}
+                    value={props.mortgageDebt}
+                    onChange={(e) => props.setMortgageDebt(e.target.value)}
+                    // onChange={handleMortgageDeptChange}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position='start'>£</InputAdornment>
@@ -54,8 +61,9 @@ export default function MortgageForm({ onMortgageSubmit }) {
                     id='interestRate'
                     label='Initial interest rate'
                     type='number'
-                    value={interestRate}
-                    onChange={handleInterestRateChange}
+                    value={props.interestRate}
+                    onChange={(e) => props.setInterestRate(e.target.value)}
+                    // onChange={handleInterestRateChange}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">%</InputAdornment>
@@ -74,8 +82,9 @@ export default function MortgageForm({ onMortgageSubmit }) {
                     id='mortgageTerm'
                     label='Mortgage term'
                     type='number'
-                    value={mortgageTerm}
-                    onChange={handleMortgageTermChange}
+                    value={props.mortgageTerm}
+                    onChange={(e) => props.setMortgageTerm(e.target.value)}
+                    // onChange={handleMortgageTermChange}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">years</InputAdornment>

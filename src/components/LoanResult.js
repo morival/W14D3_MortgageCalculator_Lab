@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoanResult = ({houseValue}) => {
+export default function LoanResult ({houseValue}) {
 
 
     return(
@@ -9,6 +9,3 @@ const LoanResult = ({houseValue}) => {
         </>
     )
 }
-
-
-export default LoanResult;
