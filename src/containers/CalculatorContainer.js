@@ -30,18 +30,18 @@ export default function CalculatorContainer() {
     const [mortgageTerm, setMortgageTerm] = useState("35");
 
     const [monthlyPayment, setMonthlyPayment] = useState(0);
-    const [totalRepayment, setTotalRepayment] = useState(0);
+    // const [totalRepayment, setTotalRepayment] = useState(0);
 
     useEffect(() => {
         const numberOfPayments = mortgageTerm * 12;
         const monthlyRate = interestRate / 100 / 12;
         const power = Math.pow(1 + monthlyRate, numberOfPayments);
         const payment = mortgageDebt * (monthlyRate * power / (power - 1));
-        setMonthlyPayment(payment.toFixed(2));
-        const totalPayment = payment * numberOfPayments;
-        setTotalRepayment(totalPayment.toFixed(2))
-    },[mortgageTerm, interestRate, mortgageDebt])
-
+        setMonthlyPayment(payment);
+        // const totalPayment = payment * numberOfPayments;
+        // setTotalRepayment(totalPayment.toFixed(2))
+        console.log(mortgageDebt)
+    }, [mortgageTerm, interestRate, mortgageDebt])
 
     return (
         <Container maxWidth='sm'>
@@ -65,14 +65,14 @@ export default function CalculatorContainer() {
                         setInterestRate={setInterestRate}
                         mortgageTerm={mortgageTerm}
                         setMortgageTerm={setMortgageTerm}
-                        // onMortgageSubmit={calculateMortgage} 
-                        />
+                    />
                 </CardActions>
                 <CardContent>
                     <MortgageResult
                         monthlyPayment={monthlyPayment}
-                        mortgageDebt={mortgageDebt}
-                     totalRepayment={totalRepayment} 
+                        monthlyInterest={mortgageDebt * interestRate / 1200}
+                        mortgageDebt={mortgageDebt.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})}
+                        totalRepayment={monthlyPayment * mortgageTerm * 12}
                     />
                 </CardContent>
             </Card>
