@@ -4,6 +4,7 @@ import LoanResult from '../components/LoanResult';
 import MortgageForm from '../components/MortgageForm';
 import { Card, CardActions, CardContent, CardHeader, Container } from '@mui/material';
 import MortgageResult from '../components/MortgageResult';
+import { useEffect } from 'react';
 
 
 export default function CalculatorContainer() {
@@ -27,25 +28,19 @@ export default function CalculatorContainer() {
     const [mortgageDebt, setMortgageDebt] = useState("170000");
     const [interestRate, setInterestRate] = useState("5.5");
     const [mortgageTerm, setMortgageTerm] = useState("35");
-    // const [monthlyPayment, setMonthlyPayment] = useState(0);
-    
-    const countMonthlyPayment = () => {
+
+    const [monthlyPayment, setMonthlyPayment] = useState(0);
+    const [totalRepayment, setTotalRepayment] = useState(0);
+
+    useEffect(() => {
         const numberOfPayments = mortgageTerm * 12;
         const monthlyRate = interestRate / 100 / 12;
         const power = Math.pow(1 + monthlyRate, numberOfPayments);
         const payment = mortgageDebt * (monthlyRate * power / (power - 1));
-        return payment;
-    }
-    const [monthlyPayment, setMonthlyPayment] = useState(countMonthlyPayment().toFixed(2));
-
-    const calculateMortgage = () => {
-        const paymentRoundedUp = countMonthlyPayment().toFixed(2)
-        // const totalRepayment = payment * numberOfPayments;
-        setMonthlyPayment(paymentRoundedUp);
-
-        console.log(paymentRoundedUp)
-        // console.log(totalRepayment.toFixed(2))
-    }
+        setMonthlyPayment(payment.toFixed(2));
+        const totalPayment = payment * numberOfPayments;
+        setTotalRepayment(totalPayment.toFixed(2))
+    },[mortgageTerm, interestRate, mortgageDebt])
 
 
     return (
@@ -70,13 +65,14 @@ export default function CalculatorContainer() {
                         setInterestRate={setInterestRate}
                         mortgageTerm={mortgageTerm}
                         setMortgageTerm={setMortgageTerm}
-                        onMortgageSubmit={calculateMortgage} />
+                        // onMortgageSubmit={calculateMortgage} 
+                        />
                 </CardActions>
                 <CardContent>
                     <MortgageResult
                         monthlyPayment={monthlyPayment}
                         mortgageDebt={mortgageDebt}
-                    //  totalRepayment={totalRepayment} 
+                     totalRepayment={totalRepayment} 
                     />
                 </CardContent>
             </Card>
