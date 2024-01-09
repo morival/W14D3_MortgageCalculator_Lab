@@ -1,12 +1,12 @@
 import React from 'react';
-import { Divider, InputAdornment, TextField, Typography } from '@mui/material';
+import { Box, Divider, InputAdornment, TextField, Typography } from '@mui/material';
 
 
 export default function RepaymentForm(props) {
 
 
     return (
-        <div>
+        <Box sx={{ width: '100%' }}>
 
             <div>
                 <Typography variant='subtitle1' gutterBottom>How much do you want to borrow?</Typography>
@@ -25,7 +25,7 @@ export default function RepaymentForm(props) {
             </div>
 
             <br />
-            <Divider />
+            <Divider/>
             <br />
 
             <div>
@@ -36,6 +36,7 @@ export default function RepaymentForm(props) {
                     type='number'
                     value={props.interestRate}
                     onChange={(e) => props.setInterestRate(e.target.valueAsNumber)}
+                    sx={{ width: 130 }}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">%</InputAdornment>
@@ -56,6 +57,7 @@ export default function RepaymentForm(props) {
                     type='number'
                     value={props.mortgageTerm}
                     onChange={(e) => props.setMortgageTerm(e.target.valueAsNumber)}
+                    sx={{ width: 130 }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">years</InputAdornment>
@@ -64,6 +66,6 @@ export default function RepaymentForm(props) {
                     }} />
             </div>
 
-        </div>
+        </Box>
     )
 };

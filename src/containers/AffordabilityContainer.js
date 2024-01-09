@@ -25,7 +25,7 @@ export default function AffordabilityContainer(params) {
 
 
     return (
-        <Card variant='outlined'>
+        <Card variant='outlined' sx={{ p: 1, m: 2, width: 1, maxWidth: '500px' }}>
             <CardHeader
                 title='Affordability Calculator'
                 subheader='Find out how much you could borrow'

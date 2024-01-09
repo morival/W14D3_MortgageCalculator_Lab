@@ -24,11 +24,11 @@ export default function RepaymentContainer(params) {
 
 
     return (
-        <Card variant='outlined'>
-            <CardHeader 
-            title='Mortgage repayment calculator'
-            subheader=''
-                subheaderTypographyProps={{paddingBlock: '20px'}} />
+        <Card variant='outlined' sx={{ p: 1, m: 2, width: 1, maxWidth: '500px'  }}>
+            <CardHeader
+                title='Mortgage Repayment Calculator'
+                subheader='Find out how much the mortgage repayments costs'
+                subheaderTypographyProps={{ paddingBlock: '20px' }} />
             <CardActions>
                 <RepaymentForm
                     mortgageDebt={mortgageDebt}

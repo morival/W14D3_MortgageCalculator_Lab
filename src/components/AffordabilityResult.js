@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LoanResult ({houseValue}) {
+export default function AffordabilityResult ({houseValue}) {
 
 
     return(
