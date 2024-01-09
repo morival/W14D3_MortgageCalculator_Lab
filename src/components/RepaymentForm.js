@@ -2,7 +2,7 @@ import React from 'react';
 import { Divider, InputAdornment, TextField, Typography } from '@mui/material';
 
 
-export default function MortgageForm(props) {
+export default function RepaymentForm(props) {
 
 
     return (
