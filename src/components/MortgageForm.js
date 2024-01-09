@@ -15,7 +15,7 @@ export default function MortgageForm(props) {
                     label='Mortgage debt'
                     type='number'
                     value={props.mortgageDebt}
-                    onChange={(e) => props.setMortgageDebt(e.target.value)}
+                    onChange={(e) => props.setMortgageDebt(e.target.valueAsNumber)}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position='start'>£</InputAdornment>
@@ -35,7 +35,7 @@ export default function MortgageForm(props) {
                     label='Initial interest rate'
                     type='number'
                     value={props.interestRate}
-                    onChange={(e) => props.setInterestRate(e.target.value)}
+                    onChange={(e) => props.setInterestRate(e.target.valueAsNumber)}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">%</InputAdornment>
@@ -55,7 +55,7 @@ export default function MortgageForm(props) {
                     label='Mortgage term'
                     type='number'
                     value={props.mortgageTerm}
-                    onChange={(e) => props.setMortgageTerm(e.target.value)}
+                    onChange={(e) => props.setMortgageTerm(e.target.valueAsNumber)}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">years</InputAdornment>
@@ -63,7 +63,7 @@ export default function MortgageForm(props) {
                         inputProps: { min: 0, required: true }
                     }} />
             </div>
-            
+
         </form>
     )
 };

@@ -25,9 +25,9 @@ export default function CalculatorContainer() {
     }
 
 
-    const [mortgageDebt, setMortgageDebt] = useState("170000");
-    const [interestRate, setInterestRate] = useState("5.5");
-    const [mortgageTerm, setMortgageTerm] = useState("35");
+    const [mortgageDebt, setMortgageDebt] = useState(170000);
+    const [interestRate, setInterestRate] = useState(5.5);
+    const [mortgageTerm, setMortgageTerm] = useState(35);
 
     const [monthlyPayment, setMonthlyPayment] = useState(0);
     // const [totalRepayment, setTotalRepayment] = useState(0);
@@ -40,7 +40,7 @@ export default function CalculatorContainer() {
         setMonthlyPayment(payment);
         // const totalPayment = payment * numberOfPayments;
         // setTotalRepayment(totalPayment.toFixed(2))
-        console.log(mortgageDebt)
+        // console.log(monthlyPaymentmonthlyInterest)
     }, [mortgageTerm, interestRate, mortgageDebt])
 
     return (
@@ -70,9 +70,9 @@ export default function CalculatorContainer() {
                 <CardContent>
                     <MortgageResult
                         monthlyPayment={monthlyPayment}
-                        monthlyInterest={mortgageDebt * interestRate / 1200}
-                        mortgageDebt={mortgageDebt.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})}
-                        totalRepayment={monthlyPayment * mortgageTerm * 12}
+                        monthlyInterest={(mortgageDebt * interestRate / 1200)}
+                        mortgageDebt={mortgageDebt}
+                        totalRepayment={(monthlyPayment * mortgageTerm * 12)}
                     />
                 </CardContent>
             </Card>
