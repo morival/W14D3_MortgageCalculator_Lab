@@ -1,31 +1,47 @@
-import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AffordabilityForm from '../components/AffordabilityForm';
 import AffordabilityResult from '../components/AffordabilityResult';
+import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
 
 
 export default function AffordabilityContainer(params) {
 
 
+    const [jointMortgage, setJointMortgage] = useState(false)
+    const [mainSalary, setMainSalary] = useState("");
+    const [secondSalary, setSecondSalary] = useState("");
+    const [salaryMultiplier, setSalaryMultiplier] = useState(4.5);
+    const [deposit, setDeposit] = useState("");
+
     const [affordableAmount, setAffordableAmount] = useState(0);
 
-    const calculateLoan = (salary) => {
-        const sal1 = parseInt(salary.mainSalary);
-        const sal2 = parseInt(salary.secondSalary ? salary.secondSalary : 0);
-        const salaryMultiplier = salary.salaryMultiplier;
-        const deposit = parseInt(salary.deposit ? salary.deposit : 0);
+   
+    useEffect(() => {
+        const totalSalary = Number(mainSalary) + Number(secondSalary);
+        const maxMortgage = totalSalary * salaryMultiplier;
+        const affordability = maxMortgage + Number(deposit);
+        setAffordableAmount(affordability)
+    }, [mainSalary, secondSalary, salaryMultiplier, deposit])
 
-        const salSum = sal1 + sal2;
-        const maxMortgage = salSum * salaryMultiplier;
-        const mortgageWithDeposit = maxMortgage + deposit;
-        setAffordableAmount(mortgageWithDeposit);
-    }
 
     return (
-        <Card variant='sm'>
-            <CardHeader title='Mortgage affordibility calculator' />
+        <Card variant='outlined'>
+            <CardHeader
+                title='Affordability Calculator'
+                subheader='Find out how much you could borrow'
+                subheaderTypographyProps={{ paddingBlock: '20px' }} />
             <CardActions>
-                <AffordabilityForm onSalarySubmit={calculateLoan} />
+                <AffordabilityForm
+                    jointMortgage={jointMortgage}
+                    setJointMortgage={setJointMortgage}
+                    mainSalary={mainSalary}
+                    setMainSalary={setMainSalary}
+                    secondSalary={secondSalary}
+                    setSecondSalary={setSecondSalary}
+                    salaryMultiplier={salaryMultiplier}
+                    setSalaryMultiplier={setSalaryMultiplier}
+                    deposit={deposit}
+                    setDeposit={setDeposit} />
             </CardActions>
             <CardContent>
                 <AffordabilityResult houseValue={affordableAmount} />

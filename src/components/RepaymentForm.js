@@ -6,7 +6,7 @@ export default function RepaymentForm(props) {
 
 
     return (
-        <form>
+        <div>
 
             <div>
                 <Typography variant='subtitle1' gutterBottom>How much do you want to borrow?</Typography>
@@ -64,6 +64,6 @@ export default function RepaymentForm(props) {
                     }} />
             </div>
 
-        </form>
+        </div>
     )
 };

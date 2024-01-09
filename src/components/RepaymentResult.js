@@ -6,9 +6,10 @@ const formattedNumber = (num) => Intl.NumberFormat("en-US", { maximumFractionDig
 
 export default function MortgageResult({ monthlyPayment, monthlyInterest, mortgageDebt, totalRepayment }) {
 
+
     const principal = (monthlyPayment - monthlyInterest);
 
-    console.log(formattedNumber(monthlyPayment));
+    
     return (
         <>
             <h4>Monthly mortgage payment: £{formattedNumber(monthlyPayment)}</h4>

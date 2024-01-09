@@ -1,7 +1,7 @@
-import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import RepaymentForm from '../components/RepaymentForm';
 import RepaymentResult from '../components/RepaymentResult';
+import { Card, CardActions, CardContent, CardHeader } from '@mui/material';
 
 
 export default function RepaymentContainer(params) {
@@ -20,15 +20,15 @@ export default function RepaymentContainer(params) {
         const power = Math.pow(1 + monthlyRate, numberOfPayments);
         const payment = mortgageDebt * (monthlyRate * power / (power - 1));
         setMonthlyPayment(payment);
-        // const totalPayment = payment * numberOfPayments;
-        // setTotalRepayment(totalPayment.toFixed(2))
-        // console.log(monthlyPaymentmonthlyInterest)
     }, [mortgageTerm, interestRate, mortgageDebt])
 
 
     return (
         <Card variant='outlined'>
-            <CardHeader title='Mortgage repayment calculator' />
+            <CardHeader 
+            title='Mortgage repayment calculator'
+            subheader=''
+                subheaderTypographyProps={{paddingBlock: '20px'}} />
             <CardActions>
                 <RepaymentForm
                     mortgageDebt={mortgageDebt}
